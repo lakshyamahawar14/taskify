@@ -10,7 +10,7 @@ export default function Tasks() {
   const [objects, setObjects] = useState([])
   const getAllTasks = async () => {
     try {
-      const res = await axios.get(`http://taskify-one.glitch.me/api/v1/tasks/`);
+      const res = await axios.get(`https://5000-lakshyamaha-taskmanager-84faoyoz8ak.ws-us79.gitpod.io/api/v1/tasks/`);
       setObjects(res.data.tasks)
     } catch (err) {
       console.log(err)

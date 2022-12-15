@@ -13,7 +13,7 @@ export default function UpdateForm(props) {
 
   const updateTask = async () => {
     try {
-        const res = await axios.patch(`http://taskify-one.glitch.me/api/v1/tasks/${props.taskObject._id}`, {
+        const res = await axios.patch(`https://5000-lakshyamaha-taskmanager-84faoyoz8ak.ws-us79.gitpod.io/api/v1/tasks/${props.taskObject._id}`, {
         name: taskName,
         completed: completed
         })
@@ -23,11 +23,10 @@ export default function UpdateForm(props) {
     }
   }
 
-  const handleUpdate = () => {
+  const handleUpdate = async () => {
     if(taskName.length == 0) return alert('Please fill the task name!')
+    await updateTask();
     setObjects([...objects, {name: taskName, completed: completed}]);
-    updateTask();
-
   }
 
   const handleTaskNameUpdate = () => {

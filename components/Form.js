@@ -10,7 +10,7 @@ export default function Form(props) {
 
   const createTask = async () => {
     try {
-      const res = await axios.post('http://taskify-one.glitch.me/api/v1/tasks/', {
+      const res = await axios.post('https://5000-lakshyamaha-taskmanager-84faoyoz8ak.ws-us79.gitpod.io/api/v1/tasks/', {
       name: taskName,
       completed: completed
     })
@@ -19,10 +19,10 @@ export default function Form(props) {
     }
   }
  
-  const handleAdd = () => {
+  const handleAdd = async () => {
     if(taskName.length == 0) return alert('Please fill the task name!')
+    await createTask()
     setObjects([...objects, {name: taskName, completed: completed}]);
-    createTask()
   }
 
   const handleTaskNameChange = () => {
