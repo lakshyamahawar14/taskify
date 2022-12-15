@@ -1,14 +1,24 @@
 import { useState } from "react"
 import Task from "./Task"
+import axios from "axios"
 import TaskHeading from "./TaskHeading"
 
 export default function Form() {
   const [taskName, setTaskName] = useState("")
   const [completed, setCompleted] = useState(false)
   const [objects, setObjects] = useState([])
+
+  const createTask = async () => {
+    const res = await axios.post('http://localhost:5000/api/v1/tasks/', {
+      name: taskName,
+      completed: completed
+    })
+    console.log(res);
+  }
  
   const handleAdd = () => {
     setObjects([...objects, {name: taskName, completed: completed, id: Math.floor(Math.random()*1000000)}]);
+    createTask()
   }
 
   const handleTaskNameChange = () => {
@@ -36,9 +46,9 @@ export default function Form() {
             </div>
         </div>
     </div>
-    <TaskHeading />
+    <TaskHeading/>
     {
-      objects.map((object, id) => <Task object={object} key={id} />)
+      (objects.length != 0) && <Task objects={objects}/>
     }
     </>
   )

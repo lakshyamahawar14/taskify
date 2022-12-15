@@ -1,14 +1,18 @@
+import { useState } from "react"
+
 export default function TaskSchema(props) {
     const id = props.id
     var name = props.name
     const completed = props.completed
 
+    const [isUpdate, setIsUpdate] = useState(false)
+    const [isDelete, setIsDelete] = useState(false)
     const handleUpdate = () => {
-
+        setIsUpdate(true)
     }
 
     const handleDelete = () => {
-
+        setIsDelete(true)
     }
     return (
       <>

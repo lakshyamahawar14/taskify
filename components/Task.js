@@ -1,10 +1,13 @@
+import TaskHeading from "./TaskHeading"
 import TaskSchema from "./TaskSchema"
 
 export default function Task(props) {
-    const object = props.object || [{name: "no tasks to show", completed: true, id:111111}]
+    const objects = props.objects || []
     return (
       <>
-        <TaskSchema id={props.id} name={object.name} completed={object.completed} />
+      {
+        objects.map((object, id) => <TaskSchema id={object._id} name={object.name} completed={object.completed} key={id}/>)
+      }
       </>
     )
   }
