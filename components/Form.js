@@ -1,5 +1,6 @@
 import { useState } from "react"
 import Task from "./Task"
+import TaskHeading from "./TaskHeading"
 
 export default function Form() {
   const [taskName, setTaskName] = useState("")
@@ -35,6 +36,7 @@ export default function Form() {
             </div>
         </div>
     </div>
+    <TaskHeading />
     {
       objects.map((object, id) => <Task object={object} key={id} />)
     }
