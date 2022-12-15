@@ -15,7 +15,7 @@ export default function TaskSchema(props) {
 
     const deleteTask = async () => {
         try {
-            const res = await axios.delete(`http://localhost:5000/api/v1/tasks/${_id}`, {
+            const res = await axios.delete(`http://taskify-one.glitch.me/api/v1/tasks/${_id}`, {
             })
         } catch (err) {
             console.log(err)

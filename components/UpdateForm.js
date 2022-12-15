@@ -13,7 +13,7 @@ export default function UpdateForm(props) {
 
   const updateTask = async () => {
     try {
-        const res = await axios.patch(`http://localhost:5000/api/v1/tasks/${props.taskObject._id}`, {
+        const res = await axios.patch(`http://taskify-one.glitch.me/api/v1/tasks/${props.taskObject._id}`, {
         name: taskName,
         completed: completed
         })
