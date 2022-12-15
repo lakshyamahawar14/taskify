@@ -1,12 +1,10 @@
-import TaskSchema from './TaskSchema'
+import TaskSchema from "./TaskSchema"
 
-export default function Task() {
+export default function Task(props) {
+    const object = props.object || [{name: "no tasks to show", completed: true, id:111111}]
     return (
       <>
-        <div id="task">
-            <p className="text-2xl m-4 text-center">My Tasks</p>
-        </div>
-        <TaskSchema/>
+        <TaskSchema id={props.id} name={object.name} completed={object.completed} />
       </>
     )
   }
