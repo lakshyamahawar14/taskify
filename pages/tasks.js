@@ -4,14 +4,25 @@ import Head from 'next/head'
 import Task from '../components/Task'
 import axios from 'axios'
 import { useState } from 'react'
+import { useEffect } from 'react'
 
-export default function Home() {
+export default function Tasks() {
   const [objects, setObjects] = useState([])
-  const getTasks = async () => {
-    const res = await axios.get(`http://localhost:5000/api/v1/tasks/`);
-    setObjects(res.data.tasks)
+  const getAllTasks = async () => {
+    try {
+      const res = await axios.get(`http://localhost:5000/api/v1/tasks/`);
+      setObjects(res.data.tasks)
+    } catch (err) {
+      console.log(err)
+    }
   }
-  getTasks()
+  useEffect(() => {
+    getAllTasks()
+    return () => {
+    }
+  }, []);
+  
+  
   return (
     <>
       <Head>

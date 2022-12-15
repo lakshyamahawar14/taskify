@@ -3,21 +3,25 @@ import Task from "./Task"
 import axios from "axios"
 import TaskHeading from "./TaskHeading"
 
-export default function Form() {
+export default function Form(props) {
   const [taskName, setTaskName] = useState("")
   const [completed, setCompleted] = useState(false)
   const [objects, setObjects] = useState([])
 
   const createTask = async () => {
-    const res = await axios.post('http://localhost:5000/api/v1/tasks/', {
+    try {
+      const res = await axios.post('http://localhost:5000/api/v1/tasks/', {
       name: taskName,
       completed: completed
     })
-    console.log(res);
+    } catch (err) {
+      console.log(err);
+    }
   }
  
   const handleAdd = () => {
-    setObjects([...objects, {name: taskName, completed: completed, id: Math.floor(Math.random()*1000000)}]);
+    if(taskName.length == 0) return alert('Please fill the task name!')
+    setObjects([...objects, {name: taskName, completed: completed}]);
     createTask()
   }
 

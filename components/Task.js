@@ -6,7 +6,7 @@ export default function Task(props) {
     return (
       <>
       {
-        objects.map((object, id) => <TaskSchema id={object._id} name={object.name} completed={object.completed} key={id}/>)
+        objects.slice(0).reverse().map((object, id) => <TaskSchema _id={object._id} name={object.name} completed={object.completed} key={id}/>)
       }
       </>
     )
