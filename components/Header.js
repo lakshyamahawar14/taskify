@@ -3,7 +3,7 @@ import Link from "next/link"
 export default function Header() {
   return (
     <>
-    <div id="header">
+    <div>
         <ul className="flex justify-between top-0 w-full sticky bg-white">
             <li className="text-[0.8rem] m-4 text-center">
                 <Link href="/">🥀Taskify</Link>

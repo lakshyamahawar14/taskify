@@ -3,21 +3,21 @@ import axios from "axios"
 
 export default function UpdateForm(props) {
   const [taskName, setTaskName] = useState(props.taskObject.name)
-  const [completed, setCompleted] = useState(props.taskObject.completed == 'false' ? false : true)
+  const [completed, setCompleted] = useState(props.taskObject.completed === 'false' ? false : true)
   const [objects, setObjects] = useState([])
   const [isUpdated, setIsUpdated] = useState(false)
 
-  const updatedformid = `updateform${props.taskObject._id}`
   const updatednameid = `updatedname${props.taskObject._id}`
   const updatedcompletedid = `updatedcompleted${props.taskObject._id}`
 
   const updateTask = async () => {
     try {
         const res = await axios.patch(`https://5000-lakshyamaha-taskmanager-84faoyoz8ak.ws-us79.gitpod.io/api/v1/tasks/${props.taskObject._id}`, {
-        name: taskName,
-        completed: completed
+          name: taskName,
+          completed: completed,
         })
         setIsUpdated(true)
+        setObjects([...objects, {name: taskName, completed: completed}]);
     } catch (err) {
         console.log(err)
     }
@@ -26,7 +26,6 @@ export default function UpdateForm(props) {
   const handleUpdate = async () => {
     if(taskName.length == 0) return alert('Please fill the task name!')
     await updateTask();
-    setObjects([...objects, {name: taskName, completed: completed}]);
   }
 
   const handleTaskNameUpdate = () => {
@@ -39,7 +38,7 @@ export default function UpdateForm(props) {
 
   return (
     <>
-    <div id={updatedformid} className="flex justify-center">
+    <div className="flex justify-center">
         <div className="rounded-xl shadow-xl m-4 flex flex-col align-middle min-w-[300px] border-2 w-full max-w-[35vw]">
             <div className="flex justify-between m-4">
                 <label htmlFor={updatednameid}>Task Name: </label>

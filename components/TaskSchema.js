@@ -7,7 +7,6 @@ export default function TaskSchema(props) {
     const completed = props.completed
     const router = useRouter()
     const taskschemaid = `taskschema${_id}`
-    const showtaskid = `showtask${_id}`
 
     const handleUpdate = () => {
         router.push({pathname: '/update', query:{name: name, completed : completed, _id:_id}})
@@ -17,20 +16,20 @@ export default function TaskSchema(props) {
         try {
             const res = await axios.delete(`https://5000-lakshyamaha-taskmanager-84faoyoz8ak.ws-us79.gitpod.io/api/v1/tasks/${_id}`, {
             })
+            document.getElementById(taskschemaid).style.display = 'none';
         } catch (err) {
             console.log(err)
         }
     }
 
-    const handleDelete = () => {
-        document.getElementById(taskschemaid).style.display = 'none';
-        deleteTask()
+    const handleDelete = async() => {
+        await deleteTask()
     }
     return (
       <>
         <div id={taskschemaid} className="flex justify-center">
             <div className="rounded-xl shadow-xl m-4 flex justify-center min-w-[300px] border-2 w-full max-w-[35vw]">
-                <p id={showtaskid} className="p-4 flex self-center w-full">{completed ? <del>{name}</del> : name}</p>
+                <p className="p-4 flex self-center w-full">{completed ? <del>{name}</del> : name}</p>
                 <div className="flex">
                     <div className="flex justify-center mx-1 relative self-center">
                         <button className="text-sm bg-green-500 hover:bg-green-800 text-white font-bold px-2 py-2 rounded-xl my-4" onClick={handleUpdate}>Update</button>

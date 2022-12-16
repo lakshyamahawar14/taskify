@@ -4,7 +4,7 @@ import Image from "next/image"
 export default function Footer() {
   return (
     <>
-    <div id="footer">
+    <div>
         <ul className="flex justify-between bottom-0 fixed w-full">
         <li className="text-[0.8rem] m-4 text-center">
             <p>Made with 🧠 by <span className="text-blue-800">Lakshya Mahawar</span></p>
